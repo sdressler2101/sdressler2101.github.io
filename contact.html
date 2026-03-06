@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Macphillamy &amp; Associates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark:    #0a0f1e;
+      --bg-mid:     #0f1525;
+      --border:     #1e2939;
+      --gold:       #b8a040;
+      --white:      #ffffff;
+      --text-muted: #99a1af;
+      --text-dim:   #6a7282;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-mid);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ────────────────────────────────────────────── */
+    header {
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border);
+      height: 81px;
+      display: flex;
+      align-items: center;
+      padding: 0 256px;
+    }
+
+    .header-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo img { height: 40px; width: auto; }
+
+    .logo-name {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: -0.45px;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    nav a.active,
+    nav a:hover { color: var(--white); }
+
+    /* ── HAMBURGER ─────────────────────────────────────────── */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      color: var(--white);
+    }
+
+    .menu-btn svg { display: block; }
+
+    /* ── MAIN SECTION ──────────────────────────────────────── */
+    .contact-section {
+      background: var(--bg-mid);
+      border-top: 1px solid var(--border);
+      padding: 161px 320px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    /* ── LEFT COLUMN ───────────────────────────────────────── */
+    .contact-title {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 0.35px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .contact-title .dot {
+      font-size: 96px;
+      color: var(--gold);
+      line-height: 0;
+      vertical-align: baseline;
+    }
+
+    .contact-intro {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.625;
+      letter-spacing: -0.44px;
+      color: var(--text-muted);
+      margin-bottom: 64px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-dark);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .contact-icon svg { width: 20px; height: 20px; }
+
+    .contact-item-label {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: -0.44px;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .contact-item-value {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.31px;
+      color: var(--text-muted);
+    }
+
+    /* ── RIGHT COLUMN — FORM ───────────────────────────────── */
+    .contact-form-card {
+      background: var(--bg-dark);
+      border-radius: 10px;
+      padding: 32px;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.31px;
+      color: var(--white);
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input { height: 50px; }
+    .form-group textarea { height: 122px; resize: vertical; }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--text-muted);
+    }
+
+    .btn-submit {
+      width: 100%;
+      height: 46px;
+      background: none;
+      border: 1px solid #4a5565;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .btn-submit:hover { border-color: var(--text-muted); }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      padding: 80px 320px 40px;
+    }
+
+    .footer-inner { padding: 0 32px; }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+
+    .footer-col h3,
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.15px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul li a,
+    .footer-col ul li {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.15px;
+      color: var(--text-dim);
+      text-decoration: none;
+      line-height: 1.43;
+    }
+
+    .footer-col ul li a:hover { color: var(--text-muted); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.625;
+      color: var(--text-dim);
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1280px) {
+      header           { padding: 0 48px; }
+      .contact-section { padding: 120px 80px; }
+      footer           { padding: 80px 80px 40px; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 0 24px; height: 80px; position: relative; }
+      .header-inner { justify-content: space-between; }
+      .menu-btn { display: flex; align-items: center; justify-content: center; }
+      .logo { position: absolute; left: 50%; transform: translateX(-50%); }
+      .logo-name { display: none; }
+      nav { display: none; }
+
+      .contact-section { padding: 128px 24px 96px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-title { font-size: 30px; white-space: normal; }
+      .contact-title .dot { font-size: 60px; }
+      .contact-intro { font-size: 18px; margin-bottom: 48px; }
+
+      footer { padding: 80px 24px 0; }
+      .footer-inner { padding: 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 64px; margin-bottom: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <a href="index.html" class="logo">
+        <img src="https://www.figma.com/api/mcp/asset/5fce2942-2734-4a71-a795-11ee7665c498" alt="Macphillamy &amp; Associates logo" />
+        <span class="logo-name">Macphillamy &amp; Associates</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="services.html">Our Services</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="contact-section">
+      <div class="contact-grid">
+
+        <!-- Left: info -->
+        <div>
+          <h1 class="contact-title">Get in Touch<span class="dot">.</span></h1>
+          <p class="contact-intro">We would be pleased to discuss how we can help you achieve your financial goals. Contact us today to schedule a confidential consultation.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.5 5.5C3.5 4.4 4.4 3.5 5.5 3.5H7.2C7.6 3.5 7.95 3.75 8.08 4.13L9.03 6.83C9.17 7.24 9.02 7.7 8.67 7.95L7.43 8.83C8.26 10.52 9.48 11.74 11.17 12.57L12.05 11.33C12.3 10.98 12.76 10.83 13.17 10.97L15.87 11.92C16.25 12.05 16.5 12.4 16.5 12.8V14.5C16.5 15.6 15.6 16.5 14.5 16.5C8.7 16.5 3.5 11.3 3.5 5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-item-label">Phone</p>
+                <p class="contact-item-value"><a href="tel:0291198817" style="color:inherit;text-decoration:none;">(02) 9119 8817</a></p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 7L10 11.5L17 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-item-label">Email</p>
+                <p class="contact-item-value"><a href="mailto:admin@macphillamyassoc.com" style="color:inherit;text-decoration:none;">admin@macphillamyassoc.com</a></p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 2C7.24 2 5 4.24 5 7C5 10.75 10 17 10 17C10 17 15 10.75 15 7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="10" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div>
+                <p class="contact-item-label">Office</p>
+                <p class="contact-item-value">Suite 8.03, Level 8<br>25 Bligh Street<br>Sydney NSW 2000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact-form-card">
+          <form class="form-fields" action="mailto:admin@macphillamyassoc.com" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(02) 9119 8817" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your needs..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#clients">Our Clients</a></li>
+            <li><a href="index.html#difference">Our Difference</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0291198817">(02) 9119 8817</a></li>
+            <li><a href="mailto:admin@macphillamyassoc.com">admin@macphillamyassoc.com</a></li>
+            <li>
+              Suite 8.03, Level 8<br>
+              25 Bligh Street<br>
+              Sydney NSW 2000
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Privacy Statement</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Macphillamy &amp; Associates Pty Ltd ABN 98 601 605 814 is a Corporate Authorised Representative of Alpine Capital Pty Ltd ABN 96 155 409 653 AFSL 422477</p>
+        <p>&copy; 2026 Macphillamy &amp; Associates. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
