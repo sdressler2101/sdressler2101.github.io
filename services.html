@@ -367,6 +367,12 @@
         <a href="contact.html">Contact</a>
       </nav>
     </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="team.html">Our Team</a>
+      <a href="services.html" class="active">Our Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <!-- MAIN -->
@@ -487,6 +493,17 @@
   </footer>
 
   <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const iconMenu = menuBtn.querySelector('.icon-menu');
+    const iconClose = menuBtn.querySelector('.icon-close');
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      const isOpen = mobileNav.classList.contains('open');
+      iconMenu.style.display = isOpen ? 'none' : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+    });
+
     document.querySelectorAll('.accordion-trigger').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.accordion-item');

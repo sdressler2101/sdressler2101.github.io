@@ -96,6 +96,10 @@
 
     .menu-btn svg { display: block; width: 32px; height: 32px; }
 
+    /* ── MOBILE NAV DROPDOWN ────────────────────────────────── */
+    .mobile-nav { display: none; }
+    .menu-btn .icon-close { display: none; }
+
     /* ── MAIN SECTION ──────────────────────────────────────── */
     .contact-section {
       background: var(--bg-mid);
@@ -324,6 +328,33 @@
       .logo-name { display: none; }
       nav { display: none; }
 
+      /* Mobile nav dropdown */
+      .mobile-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--bg-mid);
+        border-top: 1px solid #000;
+        padding: 16px 24px;
+        gap: 16px;
+        z-index: 100;
+      }
+      .mobile-nav a {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.31px;
+        color: var(--text-muted);
+        text-decoration: none;
+        height: 40px;
+        display: flex;
+        align-items: center;
+      }
+      .mobile-nav a.active,
+      .mobile-nav a:hover { color: var(--white); }
+
       .contact-section { padding: 128px 24px 96px; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       .contact-title { font-size: 30px; white-space: normal; }
@@ -341,11 +372,15 @@
   <!-- HEADER -->
   <header>
     <div class="header-inner">
-      <button class="menu-btn" aria-label="Open menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button class="menu-btn" aria-label="Toggle menu">
+        <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </button>
       <a href="index.html" class="logo">
@@ -359,6 +394,12 @@
         <a href="contact.html" class="active">Contact</a>
       </nav>
     </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="team.html">Our Team</a>
+      <a href="services.html">Our Services</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
   </header>
 
   <!-- MAIN -->
@@ -478,5 +519,17 @@
     </div>
   </footer>
 
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const iconMenu = menuBtn.querySelector('.icon-menu');
+    const iconClose = menuBtn.querySelector('.icon-close');
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      const isOpen = mobileNav.classList.contains('open');
+      iconMenu.style.display = isOpen ? 'none' : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
