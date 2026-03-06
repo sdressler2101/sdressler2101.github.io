@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open -a \"Figma\")",
+      "Bash(osascript -e 'tell application \"\"Figma\"\" to get name')",
+      "Bash(osascript -e 'tell application \"\"Figma\"\" to get every window')",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
